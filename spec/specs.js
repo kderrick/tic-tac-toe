@@ -47,4 +47,17 @@ describe('Board', function() {
     newBoard.gridMaker();
     expect(newBoard.grid[7].yCoordinate).to.equal(3);
   });
+
+});
+
+describe('Game', function() {
+  it("Will initialize a new game", function(){
+    var newGame = new Game();
+    expect(newGame).to.be.an.instanceof(Game);
+  });
+
+  it('should initialize game.turn to 0', function() {
+    var testGame = new Game();
+    expect(testGame.turn).to.equal(0);
+  })
 });

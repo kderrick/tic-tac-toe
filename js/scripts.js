@@ -25,3 +25,7 @@ Board.prototype.gridMaker = function() {
   console.log(this.grid);
   return this.grid;
 };
+
+function Game() {
+  this.turn = 0;
+};
