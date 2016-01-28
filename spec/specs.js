@@ -73,5 +73,14 @@ describe('Game', function() {
     var testBoard = new Board();
     testBoard.gridMaker();
     expect(testGame.result(testBoard.grid, [testBoard.grid[3], testBoard.grid[6], testBoard.grid[4], testBoard.grid[8], testBoard.grid[1] ])).to.equal("This is a tie!");
-  })
+  });
+
+  it('should change the turn', function() {
+    var player1 = new Player('X');
+    var player2 = new Player('O');
+    var testGame = new Game();
+    testGame.turnChanger();
+    expect(testGame.turn).to.equal(1);
+  });
+
 });
