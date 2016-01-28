@@ -59,5 +59,12 @@ describe('Game', function() {
   it('should initialize game.turn to 0', function() {
     var testGame = new Game();
     expect(testGame.turn).to.equal(0);
-  })
+  });
+
+  it('should return winner for a winning combo', function() {
+    var testGame = new Game();
+    var testBoard = new Board();
+    var testGrid = testBoard.gridMaker();
+    expect(testGame.result(testBoard.grid, [testBoard.grid[0], testBoard.grid[1], testBoard.grid[2] ])).to.equal('You are the winner');
+  });
 });
