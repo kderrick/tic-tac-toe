@@ -64,7 +64,14 @@ describe('Game', function() {
   it('should return winner for a winning combo', function() {
     var testGame = new Game();
     var testBoard = new Board();
-    var testGrid = testBoard.gridMaker();
+    testBoard.gridMaker();
     expect(testGame.result(testBoard.grid, [testBoard.grid[0], testBoard.grid[1], testBoard.grid[2] ])).to.equal('You are the winner');
   });
+
+  it('should declare a tie when there is no winner and the grid is full', function() {
+    var testGame = new Game();
+    var testBoard = new Board();
+    testBoard.gridMaker();
+    expect(testGame.result(testBoard.grid, [testBoard.grid[3], testBoard.grid[6], testBoard.grid[4], testBoard.grid[8], testBoard.grid[1] ])).to.equal("This is a tie!");
+  })
 });

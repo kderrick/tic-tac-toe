@@ -58,9 +58,13 @@ Game.prototype.result = function(arrayInput, comboInput) {
   var combo8 = [upperRight, midCenter, lowLeft];
   var combinations = [combo1, combo2, combo3, combo4, combo5, combo6, combo7, combo8];
 
+  var count = 0;
 
   for (var i = 0; i < combinations.length; i++) {
-    var count = 0;
+    if ((i === 7) && (count !== 3)) {
+      return "This is a tie!";
+    }
+    count = 0
     var comboIndex = combinations[i];
     for (var j = 0; j < comboInput.length; j++) {
       if (comboInput[j] === comboIndex[0] || comboInput[j] ===  comboIndex[1] || comboInput[j] ===  comboIndex[2] ) {
