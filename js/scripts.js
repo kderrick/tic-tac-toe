@@ -33,7 +33,7 @@ Board.prototype.gridMaker = function() {
 
 // this.turn can be increased in UI by button click- if is even: player 1 turn, else: player 2 turn.
 function Game() {
-  this.turn = 0;
+  this.turn = 1;
 };
 
 // Creates a result based on the input of the current grid array, and the input of the value of the mark/Space relationship. Will return win there is a winner.
@@ -57,14 +57,13 @@ Game.prototype.result = function(arrayInput, comboInput) {
   var combo7 = [upperLeft, midCenter, lowRight];
   var combo8 = [upperRight, midCenter, lowLeft];
   var combinations = [combo1, combo2, combo3, combo4, combo5, combo6, combo7, combo8];
-
   var count = 0;
 
   for (var i = 0; i < combinations.length; i++) {
     if ((i === 7) && (count !== 3)) {
       return "This is a tie!";
     }
-    count = 0
+    count = 0;
     var comboIndex = combinations[i];
     for (var j = 0; j < comboInput.length; j++) {
       if (comboInput[j] === comboIndex[0] || comboInput[j] ===  comboIndex[1] || comboInput[j] ===  comboIndex[2] ) {
@@ -73,7 +72,51 @@ Game.prototype.result = function(arrayInput, comboInput) {
         return 'You are the winner';
       }
     }
-
   };
-
 };
+
+$(function() {
+  var playerX = new Player("X");
+  var playerO = new Player("O");
+  var currentGame = new Game();;
+  var gameBoard = new Board();
+  var currentPlayer = '';
+  var currentMarkDiv = '';
+  gameBoard.gridMaker();
+
+  $('#welcome').text('Your game is ready, Player X goes first');
+
+
+function setTurn() {
+  if (currentGame.turn % 1 === 0 ) {
+   currentPlayer = playerX;
+   currentMarkDiv = '<div class="hiddenX">' +
+                            '<p>X</p>' +
+                          '</div>';
+   return currentPlayer && currentMarkDiv;
+  } else {
+    currentPlayer = playerO;
+    currentMarkDiv = '<div class="hiddenO">' +
+                             '<p>O</p>' +
+                           '</div>';
+    return currentPlayer && currentMarkDiv;
+  }
+};
+
+  $('#upperLeft').click(function() {
+    setTurn();
+    gameBoard.grid[6].markedBy(currentPlayer);
+    $(this).append(currentMarkDiv);
+    currentGame.turn += 1;
+  });
+
+  $('#upperCenter').click(function() {
+    setTurn();
+    gameBoard.grid[8].markedBy(currentPlayer);
+    $(this).append(currentMarkDiv);
+    currentGame.turn += 1;
+  });
+
+
+
+});
