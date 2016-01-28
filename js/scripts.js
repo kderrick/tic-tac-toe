@@ -37,16 +37,16 @@ function Game() {
 };
 
 // Creates a result based on the input of the current grid array, and the input of the value of the mark/Space relationship. Will return win there is a winner.
-Game.prototype.result = function(arr, comboInput) {
-  var lowLeft = arr[0];
-  var lowCenter = arr[1];
-  var lowRight = arr[2];
-  var midLeft = arr[3];
-  var midCenter = arr[4];
-  var midRight = arr[5];
-  var upperLeft = arr[6];
-  var upperCenter = arr[7];
-  var upperRight = arr[8];
+Game.prototype.result = function(arrayInput, comboInput) {
+  var lowLeft = arrayInput[0];
+  var lowCenter = arrayInput[1];
+  var lowRight = arrayInput[2];
+  var midLeft = arrayInput[3];
+  var midCenter = arrayInput[4];
+  var midRight = arrayInput[5];
+  var upperLeft = arrayInput[6];
+  var upperCenter = arrayInput[7];
+  var upperRight = arrayInput[8];
 
   var combo1 = [lowLeft, lowCenter, lowRight];
   var combo2 = [midLeft, midCenter, midRight];
@@ -56,62 +56,20 @@ Game.prototype.result = function(arr, comboInput) {
   var combo6 = [lowRight, midRight, upperRight];
   var combo7 = [upperLeft, midCenter, lowRight];
   var combo8 = [upperRight, midCenter, lowLeft];
-  var count = 0;
+  var combinations = [combo1, combo2, combo3, combo4, combo5, combo6, combo7, combo8];
 
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i] === combo1[0] || comboInput[i] ===  combo1[1] || comboInput[i] ===  combo1[2] ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
+
+  for (var i = 0; i < combinations.length; i++) {
+    var count = 0;
+    var comboIndex = combinations[i];
+    for (var j = 0; j < comboInput.length; j++) {
+      if (comboInput[j] === comboIndex[0] || comboInput[j] ===  comboIndex[1] || comboInput[j] ===  comboIndex[2] ) {
+        count++;
+      } if (count === 3) {
+        return 'You are the winner';
+      }
     }
+
   };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo2[0].mark || comboInput[i].mark ===  combo2[1].mark || comboInput[i].mark ===  combo2[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo3[0].mark || comboInput[i].mark ===  combo3[1].mark || comboInput[i].mark ===  combo3[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo4[0].mark || comboInput[i].mark ===  combo4[1].mark || comboInput[i].mark ===  combo4[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo5[0].mark || comboInput[i].mark ===  combo5[1].mark || comboInput[i].mark ===  combo5[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo6[0].mark || comboInput[i].mark ===  combo6[1].mark || comboInput[i].mark ===  combo6[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo7[0].mark || comboInput[i].mark ===  combo7[1].mark || comboInput[i].mark ===  combo7[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
-  for (var i = 0; i < comboInput.length; i++) {
-    if (comboInput[i].mark === combo8[0].mark || comboInput[i].mark ===  combo8[1].mark || comboInput[i].mark ===  combo8[2].mark ) {
-      count++;
-    } if (count === 3) {
-      return 'You are the winner';
-    }
-  };
+
 };
